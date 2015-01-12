@@ -1,0 +1,41 @@
+{% extends "dashboard_base.html" %}
+
+{% block content %}
+<div class="page-header">
+  <h1>
+    <img src="{{ user.avatar_url }}" alt="{{ user.permalink }}" class="img-circle" />
+    {{ user.full_name }}
+  </h1>
+</div>
+<div class="follows">
+</div>
+<h2 class="sub-header">Your Tracks</h2>
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th># Follows</th>
+        <th>Track Name</th>
+        <th>Active</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1,023</td>
+        <td><a href="#">For Your Love</a></td>
+        <td><div class="text-success"><span class="glyphicon glyphicon-ok"></span></div></td>
+      </tr>
+      <tr>
+        <td>10,404</td>
+        <td><a href="#">Owe It All To You</a></td>
+        <td><div class="text-success"><span class="glyphicon glyphicon-ok"></span></div></td>
+      </tr>
+      <tr>
+        <td>12,221</td>
+        <td><a href="#">Party / Afterparty</a></td>
+        <td><div class="text-danger"><span class="glyphicon glyphicon-remove"></span></div></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+{% endblock %}

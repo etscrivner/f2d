@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+      <div class="jumbotron">
+        <h1>Get Followers Fast!</h1>
+        <p class="lead">Looking for a <strong>simple tool</strong> to help you build your
+        <strong><a href="https://soundcloud.com">SoundCloud</a> fanbase</strong>? We help artists quickly and easily set up tools to trade
+        downloads for follows. <strong>Connect and get started</strong>.</p>
+        <p>
+          <a href="{% url "signup.oauth" %}"><img src="http://connect.soundcloud.com/2/btn-connect-sc-l.png" alt="Connect with SoundCloud" /></a>
+        </p>
+      </div>
+      <div class="row marketing">
+        <div class="col-lg-6">
+          <h4><span class="glyphicon glyphicon-usd" aria-hidden="true"></span> 100% Free To Use</h4>
+          <p>That's right! You pay zip, zero, zilch, nada. Our service has
+          always been and will remain 100% free for you to use. So what are you
+          waiting for? <a href="{% url "signup.oauth" %}">Get Started Already</a></p>
+        </div>
+        <div class="col-lg-6">
+          <h4><span class="glyphicon glyphicon-stats" aria-hidden="true"></span> Complimentary Analytics</h4>
+          <p>It's the 21st century, and you need tools that act like it. With
+          our simple analytics you'll be able to see per-track follows at a
+          glance so you can quickly and easily see how things are growing.</p>
+        </div>
+      </div>
+{% endblock %}
