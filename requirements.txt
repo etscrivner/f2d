@@ -6,3 +6,4 @@ simplejson==3.6.5
 soundcloud==0.4.1
 wsgiref==0.1.2
 ipython==2.3.1
+python-social-auth==0.2.1

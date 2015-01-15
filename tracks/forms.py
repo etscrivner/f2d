@@ -18,5 +18,4 @@ class UploadTrackForm(forms.Form):
 
     artist = forms.CharField(max_length=256)
     title = forms.CharField(max_length=256)
-    soundcloud_url = forms.URLField()
-    track = forms.FileField()
+    track_url = forms.URLField()

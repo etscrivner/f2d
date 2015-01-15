@@ -19,7 +19,7 @@
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-    <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
+    <!--script src="../../assets/js/ie-emulation-modes-warning.js"></script-->
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -54,129 +54,12 @@
       <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
           <ul class="nav nav-sidebar">
-            <li class="active"><a href="{% url "dashboard" %}">Overview <span class="sr-only">(current)</span></a></li>
-            <li><a href="{% url "tracks.upload" %}">Upload Track</a></li>
+            <li {% if not upload %}class="active"{% endif %}><a href="{% url "dashboard" %}">Overview <span class="sr-only">(current)</span></a></li>
+            <li {% if upload %}class="active"{% endif %}><a href="{% url "tracks.upload" %}">Upload Track</a></li>
           </ul>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-          <h1 class="page-header">
-            <img src="{{ user.avatar_url }}" alt="{{ user.permalink }}" class="img-circle" />
-            <a href="{{ user.permalink_url }}">{{ user.full_name }}</a>
-          </h1>
-
-          <div class="row placeholders">
-            <div class="col-xs-6 col-sm-3 placeholder">
-              <h1>23</h1>
-              <h4>Tracks</h4>
-            </div>
-            <div class="col-xs-6 col-sm-3 placeholder">
-              <h1>12</h1>
-              <h4># Follows Last 7 Days</h4>
-            </div>
-            <div class="col-xs-6 col-sm-3 placeholder">
-              <h1>1,231</h1>
-              <h4># Follows Last 30 Days</h4>
-            </div>
-            <div class="col-xs-6 col-sm-3 placeholder">
-              <h1>100,231</h1>
-              <h4># Follows Last 3 Months</h4>
-            </div>
-          </div>
-
-          <h2 class="sub-header">Tracks</h2>
-          <div class="table-responsive">
-            <table class="table table-striped">
-              <thead>
-                <tr>
-                  <th># Follows</th>
-                  <th>Title</th>
-                  <th>Active</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>1,001</td>
-                  <td>Lorem</td>
-                  <td>ipsum</td>
-                </tr>
-                <tr>
-                  <td>1,002</td>
-                  <td>amet</td>
-                  <td>consectetur</td>
-                </tr>
-                <tr>
-                  <td>1,003</td>
-                  <td>Integer</td>
-                  <td>nec</td>
-                </tr>
-                <tr>
-                  <td>1,003</td>
-                  <td>libero</td>
-                  <td>Sed</td>
-                </tr>
-                <tr>
-                  <td>1,004</td>
-                  <td>dapibus</td>
-                  <td>diam</td>
-                </tr>
-                <tr>
-                  <td>1,005</td>
-                  <td>Nulla</td>
-                  <td>quis</td>
-                </tr>
-                <tr>
-                  <td>1,006</td>
-                  <td>nibh</td>
-                  <td>elementum</td>
-                </tr>
-                <tr>
-                  <td>1,007</td>
-                  <td>sagittis</td>
-                  <td>ipsum</td>
-                </tr>
-                <tr>
-                  <td>1,008</td>
-                  <td>Fusce</td>
-                  <td>nec</td>
-                </tr>
-                <tr>
-                  <td>1,009</td>
-                  <td>augue</td>
-                  <td>semper</td>
-                </tr>
-                <tr>
-                  <td>1,010</td>
-                  <td>massa</td>
-                  <td>Vestibulum</td>
-                </tr>
-                <tr>
-                  <td>1,011</td>
-                  <td>eget</td>
-                  <td>nulla</td>
-                </tr>
-                <tr>
-                  <td>1,012</td>
-                  <td>taciti</td>
-                  <td>sociosqu</td>
-                </tr>
-                <tr>
-                  <td>1,013</td>
-                  <td>torquent</td>
-                  <td>per</td>
-                </tr>
-                <tr>
-                  <td>1,014</td>
-                  <td>per</td>
-                  <td>inceptos</td>
-                </tr>
-                <tr>
-                  <td>1,015</td>
-                  <td>sodales</td>
-                  <td>ligula</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+          {% block content %}{% endblock %}
         </div>
       </div>
     </div>
@@ -187,5 +70,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+    {% block scripts %}{% endblock %}
   </body>
 </html>

@@ -1,1 +1,57 @@
 {% extends "dashboard_base.html" %}
+
+{% block content %}
+<h1>Upload Track</h1>
+{% if form.errors %}
+<div class="alert alert-danger" role="alert">
+  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+  <span class="sr-only">Error:</span>
+  There were some errors, please see below and correct.
+</div>
+{% endif %}
+<form action="{% url "tracks.upload" %}" method="post">{% csrf_token %}
+  <div class="form-group">
+    <label for="{{ form.artist.id_for_label }}">Artist: </label>
+    <input type="text" id="artist" name="artist" class="form-control" value="{{ form.artist.value|default:"" }}"/>
+    <p class="help-block">{{ form.artist.errors }}</p>
+  </div>
+  <div class="form-group">
+    <label for="{{ form.title.id_for_label }}">Title: </label>
+    <input type="text" id="title" name="title" class="form-control" />
+    <p class="help-block">{{ form.title.errors }}</p>
+  </div>
+  <div class="form-group">
+    <p><label for="{{ form.track_track.id_for_label }}">Download Link Type: </label></p>
+    <div class="btn-group" data-toggle="buttons">
+      <label class="btn btn-primary active">
+        <input type="radio" name="track_type" id="1" value="1" autocomplete="off" checked> SoundCloud
+      </label>
+      <label class="btn btn-primary">
+        <input type="radio" name="track_type" id="2" value="2" autocomplete="off"> DropBox
+      </label>
+    </div>
+    <p class="help-block">{{ form.track_type.errors }}</p>
+  </div>
+  <div class="form-group">
+    <input type="text" id="track_url" name="track_url" class="form-control" />
+    <p id="download-help-text" class="help-block">A link to the private soundcloud track: <em>http://soundcloud.com/</em>.</p>
+    <p class="help-block">{{ form.track_url.errors }}</p>
+  </div>
+  <input type="submit" value="Upload" class="btn btn-primary" />
+</form>
+{% endblock %}
+
+{% block scripts %}
+<script type="text/javascript">
+  $("input[name=track_type]").change(function() {
+    var selectedText = $(this).parent().text().trim();
+    if (selectedText == "SoundCloud") {
+        console.log("SC");
+        $("#download-help-text").html("A link to the private soundcloud track: <em>http://soundcloud.com/</em>.");
+    } else {
+        console.log("other");
+        $("#download-help-text").html("A link to the dropbox track: <em>http://dropbox.com/</em>.");
+    }
+  });
+</script>
+{% endblock %}

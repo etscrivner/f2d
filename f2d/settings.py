@@ -36,6 +36,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_nose',
     'f2d',
     'tracks',
     'users'
@@ -85,6 +86,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+# Unit-testing
+TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
+
 # Logging
 # https://docs.djangoproject.com/en/1.7/topics/logging/
 LOGGING = {
@@ -115,3 +119,5 @@ LOGGING = {
 SOUNDCLOUD_CLIENT_ID = 'dbfb931676a5e9a01e7b20e5221feef8'
 SOUNDCLOUD_CLIENT_SECRET = 'b4322147bbae3e543e5dfb60fbb2a271'
 SOUNDCLOUD_REDIRECT_URI = 'http://localhost:8000/users/oauth/callback'
+
+

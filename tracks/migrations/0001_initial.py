@@ -15,7 +15,9 @@ class Migration(migrations.Migration):
             name='UploadedTrack',
             fields=[
                 ('uploaded_track_id', models.AutoField(serialize=False, primary_key=True)),
-                ('track_file', models.FileField(upload_to=b'')),
+                ('artist', models.CharField(max_length=256)),
+                ('title', models.CharField(max_length=256)),
+                ('track_url', models.URLField()),
                 ('user', models.ForeignKey(to='users.SoundCloudUser')),
             ],
             options={

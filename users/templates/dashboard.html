@@ -1,41 +1,122 @@
 {% extends "dashboard_base.html" %}
 
 {% block content %}
-<div class="page-header">
-  <h1>
-    <img src="{{ user.avatar_url }}" alt="{{ user.permalink }}" class="img-circle" />
-    {{ user.full_name }}
-  </h1>
-</div>
-<div class="follows">
-</div>
-<h2 class="sub-header">Your Tracks</h2>
-<div class="table-responsive">
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th># Follows</th>
-        <th>Track Name</th>
-        <th>Active</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>1,023</td>
-        <td><a href="#">For Your Love</a></td>
-        <td><div class="text-success"><span class="glyphicon glyphicon-ok"></span></div></td>
-      </tr>
-      <tr>
-        <td>10,404</td>
-        <td><a href="#">Owe It All To You</a></td>
-        <td><div class="text-success"><span class="glyphicon glyphicon-ok"></span></div></td>
-      </tr>
-      <tr>
-        <td>12,221</td>
-        <td><a href="#">Party / Afterparty</a></td>
-        <td><div class="text-danger"><span class="glyphicon glyphicon-remove"></span></div></td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+<h1 class="page-header">
+            <img src="{{ user.avatar_url }}" alt="{{ user.permalink }}" class="img-circle" />
+            <a href="{{ user.permalink_url }}">{{ user.full_name }}</a>
+          </h1>
+
+          <div class="row placeholders">
+            <div class="col-xs-6 col-sm-3 placeholder">
+              <h1>23</h1>
+              <h4>Tracks</h4>
+            </div>
+            <div class="col-xs-6 col-sm-3 placeholder">
+              <h1>12</h1>
+              <h4># Follows Last 7 Days</h4>
+            </div>
+            <div class="col-xs-6 col-sm-3 placeholder">
+              <h1>1,231</h1>
+              <h4># Follows Last 30 Days</h4>
+            </div>
+            <div class="col-xs-6 col-sm-3 placeholder">
+              <h1>100,231</h1>
+              <h4># Follows Last 3 Months</h4>
+            </div>
+          </div>
+
+          <h2 class="sub-header">Tracks</h2>
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th># Follows</th>
+                  <th>Title</th>
+                  <th>Active</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1,001</td>
+                  <td>Lorem</td>
+                  <td>ipsum</td>
+                </tr>
+                <tr>
+                  <td>1,002</td>
+                  <td>amet</td>
+                  <td>consectetur</td>
+                </tr>
+                <tr>
+                  <td>1,003</td>
+                  <td>Integer</td>
+                  <td>nec</td>
+                </tr>
+                <tr>
+                  <td>1,003</td>
+                  <td>libero</td>
+                  <td>Sed</td>
+                </tr>
+                <tr>
+                  <td>1,004</td>
+                  <td>dapibus</td>
+                  <td>diam</td>
+                </tr>
+                <tr>
+                  <td>1,005</td>
+                  <td>Nulla</td>
+                  <td>quis</td>
+                </tr>
+                <tr>
+                  <td>1,006</td>
+                  <td>nibh</td>
+                  <td>elementum</td>
+                </tr>
+                <tr>
+                  <td>1,007</td>
+                  <td>sagittis</td>
+                  <td>ipsum</td>
+                </tr>
+                <tr>
+                  <td>1,008</td>
+                  <td>Fusce</td>
+                  <td>nec</td>
+                </tr>
+                <tr>
+                  <td>1,009</td>
+                  <td>augue</td>
+                  <td>semper</td>
+                </tr>
+                <tr>
+                  <td>1,010</td>
+                  <td>massa</td>
+                  <td>Vestibulum</td>
+                </tr>
+                <tr>
+                  <td>1,011</td>
+                  <td>eget</td>
+                  <td>nulla</td>
+                </tr>
+                <tr>
+                  <td>1,012</td>
+                  <td>taciti</td>
+                  <td>sociosqu</td>
+                </tr>
+                <tr>
+                  <td>1,013</td>
+                  <td>torquent</td>
+                  <td>per</td>
+                </tr>
+                <tr>
+                  <td>1,014</td>
+                  <td>per</td>
+                  <td>inceptos</td>
+                </tr>
+                <tr>
+                  <td>1,015</td>
+                  <td>sodales</td>
+                  <td>ligula</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
 {% endblock %}
