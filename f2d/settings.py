@@ -38,6 +38,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django_nose',
     'f2d',
+    'follow',
     'tracks',
     'users'
 )
@@ -120,4 +121,14 @@ SOUNDCLOUD_CLIENT_ID = 'dbfb931676a5e9a01e7b20e5221feef8'
 SOUNDCLOUD_CLIENT_SECRET = 'b4322147bbae3e543e5dfb60fbb2a271'
 SOUNDCLOUD_REDIRECT_URI = 'http://localhost:8000/users/oauth/callback'
 
+SOUNDCLOUD_FOLLOW_CLIENT_ID = '85ba9d3f1618af2b1fc958c07295a3cd'
+SOUNDCLOUD_FOLLOW_CLIENT_SECRET = '97957a3b44badfe1bb9da7cdcdc2c6c0'
+SOUNDCLOUD_FOLLOW_REDIRECT_URI = 'http://localhost:8000/d/oauth/callback'
 
+
+# File Upload Constants
+MAX_TRACK_FILE_SIZE_MB = 15
+
+# File upload configuration
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'

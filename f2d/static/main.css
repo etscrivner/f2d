@@ -59,6 +59,35 @@ body {
   margin-top: 28px;
 }
 
+.download-step-number {
+    border: 1px solid silver;
+    border-radius: 0.2em;
+    padding: 0.2em 0.4em;
+}
+
+/* Follow Page */
+.current-step {
+    background-color: #eee;
+}
+
+.upcoming-step {
+    background-color: silver;
+}
+
+.completed-step {
+    color: #3c763d;
+    background-color:  #dff0d8;
+    border-color: #d6e9c6;
+}
+
+a .self-promo-link, a.self-promo-link:visited, a.self-promo-link:active {
+    color: #eee;
+}
+
+a .self-promo-link:hover {
+    color: #ddd;
+}
+
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
   /* Remove the padding we set earlier */

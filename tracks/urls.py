@@ -11,5 +11,6 @@ from tracks import views
 
 
 urlpatterns = patterns('',
-    url(r'^upload', views.UploadView.as_view(), name='tracks.upload')
+    url(r'^upload', views.UploadView.as_view(), name='tracks.upload'),
+    url(r'^info/(?P<track_id>.*)', views.InfoView.as_view(), name='tracks.info')
 )

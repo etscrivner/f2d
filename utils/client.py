@@ -23,16 +23,23 @@ class AppSoundCloudClient(object):
         """Exception raised when token exchange fails"""
         pass
 
-    def __init__(self, soundcloud_client=soundcloud.Client):
+    def __init__(self,
+                 soundcloud_client=soundcloud.Client,
+                 client_id=settings.SOUNDCLOUD_CLIENT_ID,
+                 client_secret=settings.SOUNDCLOUD_CLIENT_SECRET,
+                 redirect_uri=settings.SOUNDCLOUD_REDIRECT_URI):
         """Initializes the soundcloud client
 
         :param soundcloud_client: The soundcloud client to use (mostly for test
                                   mocking)
+        :param client_id: The client id
+        :param client_secret: The client secret
+        :param redirect_uri: The redirect URI
         """
         self.client = soundcloud_client(
-            client_id=settings.SOUNDCLOUD_CLIENT_ID,
-            client_secret=settings.SOUNDCLOUD_CLIENT_SECRET,
-            redirect_uri=settings.SOUNDCLOUD_REDIRECT_URI
+            client_id=client_id,
+            client_secret=client_secret,
+            redirect_uri=redirect_uri
         )
 
     def get_oauth_url(self):
@@ -66,6 +73,17 @@ class AppSoundCloudClient(object):
         return data[u'access_token']
 
 
+class AppSoundCloudFollowerClient(AppSoundCloudClient):
+    """Sound cloud app for followers"""
+
+    def __init__(self):
+        super(AppSoundCloudFollowerClient, self).__init__(
+            client_id=settings.SOUNDCLOUD_FOLLOW_CLIENT_ID,
+            client_secret=settings.SOUNDCLOUD_FOLLOW_CLIENT_SECRET,
+            redirect_uri=settings.SOUNDCLOUD_FOLLOW_REDIRECT_URI
+        )
+
+
 class UserSoundCloudClient(object):
     """Interface for interacting with soundcloud as a specific user"""
 
@@ -89,3 +107,11 @@ class UserSoundCloudClient(object):
         data = resource.obj
         data[u'access_token'] = self.access_token
         return data
+
+    def add_follower(self, follower_id):
+        """Add the follower with the given id.
+
+        :param follower_id: A soundcloud id for the follower
+        :type follower_id: str
+        """
+        self.client.put('/me/followings/{}'.format(follower_id))

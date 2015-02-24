@@ -103,3 +103,7 @@ body {
   display: inline-block;
   border-radius: 50%;
 }
+
+.empty-message {
+    padding: 0.5em;
+}

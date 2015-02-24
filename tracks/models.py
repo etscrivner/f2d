@@ -6,6 +6,8 @@
 
     Copyright (C) 2015 FollowToDownload
 """
+import uuid
+
 from django.db import models
 
 from tracks import entities
@@ -15,21 +17,20 @@ import users.models
 class UploadedTrack(models.Model):
     """Represents an music track belonging to a user"""
 
-    TRACK_TYPE_CHOICES = (
-        (entities.TrackType.SoundCloud, 'SoundCloud'),
-        (entities.TrackType.DropBox, 'DropBox')
-    )
-
     uploaded_track_id = models.AutoField(primary_key=True)
-    user = models.ForeignKey(users.models.SoundCloudUser)
+    track_url_id = models.CharField(
+        max_length=36, blank=False, default=str(uuid.uuid4()), db_index=True
+    )
+    user = models.ForeignKey(users.models.SoundCloudUser, db_index=True)
     artist = models.CharField(max_length=256, blank=False)
     title = models.CharField(max_length=256, blank=False)
-    track_type = models.IntegerField(
-        choices=TRACK_TYPE_CHOICES,
-        blank=False,
-        default=entities.TrackType.SoundCloud
-    )
-    track_url = models.URLField(blank=False)
+    track_file = models.FileField(blank=False)
+
+    @property
+    def downloads(self):
+        """Compute and return the number of downloads for this track"""
+        import follow.models
+        return follow.models.TrackFollower.objects.filter(track=self)
     
     def as_entity(self):
         """Returns the entity form of the track.
@@ -38,10 +39,11 @@ class UploadedTrack(models.Model):
         """
         return entities.UploadedTrack(
             self.uploaded_track_id,
+            self.track_url_id,
             self.user.id,
             self.artist,
             self.title,
-            self.track_url
+            self.track_file
         )
 
     def __unicode__(self):
@@ -50,5 +52,5 @@ class UploadedTrack(models.Model):
         :rtype: str or unicode
         """
         return u'(uploaded_track_id={}, user_id={})'.format(
-            self.uploaded_track_id, self.user.id
+            self.uploaded_track_id, self.user.pk
         )

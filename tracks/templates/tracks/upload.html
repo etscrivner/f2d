@@ -9,7 +9,7 @@
   There were some errors, please see below and correct.
 </div>
 {% endif %}
-<form action="{% url "tracks.upload" %}" method="post">{% csrf_token %}
+<form action="{% url "tracks.upload" %}" method="post" enctype="multipart/form-data">{% csrf_token %}
   <div class="form-group">
     <label for="{{ form.artist.id_for_label }}">Artist: </label>
     <input type="text" id="artist" name="artist" class="form-control" value="{{ form.artist.value|default:"" }}"/>
@@ -17,41 +17,24 @@
   </div>
   <div class="form-group">
     <label for="{{ form.title.id_for_label }}">Title: </label>
-    <input type="text" id="title" name="title" class="form-control" />
+    <input type="text" id="title" name="title" class="form-control" value="{{ form.title.value|default:"" }}" />
     <p class="help-block">{{ form.title.errors }}</p>
   </div>
   <div class="form-group">
-    <p><label for="{{ form.track_track.id_for_label }}">Download Link Type: </label></p>
-    <div class="btn-group" data-toggle="buttons">
-      <label class="btn btn-primary active">
-        <input type="radio" name="track_type" id="1" value="1" autocomplete="off" checked> SoundCloud
-      </label>
-      <label class="btn btn-primary">
-        <input type="radio" name="track_type" id="2" value="2" autocomplete="off"> DropBox
-      </label>
-    </div>
-    <p class="help-block">{{ form.track_type.errors }}</p>
-  </div>
-  <div class="form-group">
-    <input type="text" id="track_url" name="track_url" class="form-control" />
-    <p id="download-help-text" class="help-block">A link to the private soundcloud track: <em>http://soundcloud.com/</em>.</p>
-    <p class="help-block">{{ form.track_url.errors }}</p>
+    <label for="{{ form.track_file.id_for_label }}">Track File:</label>
+    <p id="download-help-text" class="help-block">The track file (.mp3 files only)</p>
+    <input type="file" id="id_track_file" name="track_file" value="{{ form.track_file.value|default:""}}" />
+    <p class="help-block">{{ form.track_file.errors }}</p>
   </div>
   <input type="submit" value="Upload" class="btn btn-primary" />
 </form>
-{% endblock %}
-
-{% block scripts %}
-<script type="text/javascript">
-  $("input[name=track_type]").change(function() {
-    var selectedText = $(this).parent().text().trim();
-    if (selectedText == "SoundCloud") {
-        console.log("SC");
-        $("#download-help-text").html("A link to the private soundcloud track: <em>http://soundcloud.com/</em>.");
-    } else {
-        console.log("other");
-        $("#download-help-text").html("A link to the dropbox track: <em>http://dropbox.com/</em>.");
-    }
-  });
+<div>
+<ins class="adsbygoogle"
+     style="display:inline-block;width:300px;height:250px"
+     data-ad-client="ca-pub-9844785619338228"
+     data-ad-slot="3698535390"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
 </script>
+</div>
 {% endblock %}

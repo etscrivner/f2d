@@ -1,0 +1,17 @@
+{% extends "follow_base.html" %}
+
+{% block content %}
+<h1>
+  <img src="{{ track.user.avatar_url }}" alt="{{ track.user.permalink }}" class="img-circle" />
+  Download: {{ track.artist }} - {{ track.title }}
+</h1>
+<h3>
+  <span class="download-step-number current-step">1</span>
+  Connect
+</h3>
+<p>
+  <a href="{% url "follow.oauth.redirect" %}?track_id={{ track.track_url_id }}"><img src="http://connect.soundcloud.com/2/btn-connect-sc-l.png" alt="Connect with SoundCloud" /></a>
+</p>
+<h3><span class="download-step-number upcoming-step">2</span> Follow</h3>
+<h3><span class="download-step-number upcoming-step">3</span> Download Your Track</h3>
+{% endblock %}

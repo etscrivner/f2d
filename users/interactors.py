@@ -32,4 +32,4 @@ class AuthenticateSoundCloudUserInteractor(object):
         access_token = self.app_client_cls().exchange_for_access_token(code)
         user_info = self.user_client_cls(access_token).get_me()
         entity = self.user_data_gateway_cls.create_from_me_response(user_info)
-        return entity
+        return entity    

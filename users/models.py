@@ -34,6 +34,16 @@ class SoundCloudUser(models.Model):
     full_name = models.TextField(blank=False)
     last_login = models.DateTimeField(null=True, blank=False)
 
+    def num_follows_last_seven_days(self):
+        """Return the number of follows for the last 7 days.
+
+        :rtype: int
+        """
+        import tracks.models
+        import follow.models
+        my_tracks = tracks.models.UploadedTrack.objects.filter(user=self)
+        return follow.models.TrackFollower.objects.filter(track=my_tracks).count()
+
     def as_entity(self):
         """Returns the entity form of this model object.
 

@@ -13,6 +13,7 @@
 
     <!-- Main stylesheet -->
     <link rel="stylesheet" href="{% static "main.css" %}">
+    {% block stylesheets %}{% endblock %}
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -36,12 +37,14 @@
       </div>
       {% block content %}{% endblock %}
       <footer class="footer">
-        <p>&copy; Follow2Download.com 2015</p>
+        <p>&copy; <a href="{% url 'homepage' %}">Follow2Download.com</a> 2015</p>
       </footer>
     </div>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+    <!-- Google Ads -->
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
   </body>
 </html>

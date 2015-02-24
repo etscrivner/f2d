@@ -3,28 +3,39 @@
 {% block content %}
 <h1 class="page-header">
             <img src="{{ user.avatar_url }}" alt="{{ user.permalink }}" class="img-circle" />
-            <a href="{{ user.permalink_url }}">{{ user.full_name }}</a>
+            <a target="_blank" href="{{ user.permalink_url }}">{{ user.full_name }}</a>
           </h1>
+
+{% if tracks and track_stats %}
 
           <div class="row placeholders">
             <div class="col-xs-6 col-sm-3 placeholder">
-              <h1>23</h1>
+              <h1>{{ tracks|length }}</h1>
               <h4>Tracks</h4>
             </div>
             <div class="col-xs-6 col-sm-3 placeholder">
-              <h1>12</h1>
+              <h1>{{ user.num_follows_last_seven_days }}</h1>
               <h4># Follows Last 7 Days</h4>
             </div>
             <div class="col-xs-6 col-sm-3 placeholder">
-              <h1>1,231</h1>
-              <h4># Follows Last 30 Days</h4>
+              <ins class="adsbygoogle"
+                   style="display:inline-block;width:300px;height:250px"
+                   data-ad-client="ca-pub-9844785619338228"
+                   data-ad-slot="5314869393"></ins>
+              <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+              </script>
             </div>
             <div class="col-xs-6 col-sm-3 placeholder">
-              <h1>100,231</h1>
-              <h4># Follows Last 3 Months</h4>
+              <ins class="adsbygoogle"
+                   style="display:inline-block;width:300px;height:250px"
+                   data-ad-client="ca-pub-9844785619338228"
+                   data-ad-slot="6791602594"></ins>
+              <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+              </script>
             </div>
           </div>
-
           <h2 class="sub-header">Tracks</h2>
           <div class="table-responsive">
             <table class="table table-striped">
@@ -33,90 +44,23 @@
                   <th># Follows</th>
                   <th>Title</th>
                   <th>Active</th>
+                  <th>Info Link</th>
                 </tr>
               </thead>
               <tbody>
+                {% for track in tracks %}
                 <tr>
-                  <td>1,001</td>
-                  <td>Lorem</td>
-                  <td>ipsum</td>
+                  <td>{{ track.downloads|length }}</td>
+                  <td>{{ track.artist }}</td>
+                  <td>{{ track.title }}</td>
+                  <td><a href="{% url "tracks.info" track_id=track.track_url_id %}">Info</a></td>
                 </tr>
-                <tr>
-                  <td>1,002</td>
-                  <td>amet</td>
-                  <td>consectetur</td>
-                </tr>
-                <tr>
-                  <td>1,003</td>
-                  <td>Integer</td>
-                  <td>nec</td>
-                </tr>
-                <tr>
-                  <td>1,003</td>
-                  <td>libero</td>
-                  <td>Sed</td>
-                </tr>
-                <tr>
-                  <td>1,004</td>
-                  <td>dapibus</td>
-                  <td>diam</td>
-                </tr>
-                <tr>
-                  <td>1,005</td>
-                  <td>Nulla</td>
-                  <td>quis</td>
-                </tr>
-                <tr>
-                  <td>1,006</td>
-                  <td>nibh</td>
-                  <td>elementum</td>
-                </tr>
-                <tr>
-                  <td>1,007</td>
-                  <td>sagittis</td>
-                  <td>ipsum</td>
-                </tr>
-                <tr>
-                  <td>1,008</td>
-                  <td>Fusce</td>
-                  <td>nec</td>
-                </tr>
-                <tr>
-                  <td>1,009</td>
-                  <td>augue</td>
-                  <td>semper</td>
-                </tr>
-                <tr>
-                  <td>1,010</td>
-                  <td>massa</td>
-                  <td>Vestibulum</td>
-                </tr>
-                <tr>
-                  <td>1,011</td>
-                  <td>eget</td>
-                  <td>nulla</td>
-                </tr>
-                <tr>
-                  <td>1,012</td>
-                  <td>taciti</td>
-                  <td>sociosqu</td>
-                </tr>
-                <tr>
-                  <td>1,013</td>
-                  <td>torquent</td>
-                  <td>per</td>
-                </tr>
-                <tr>
-                  <td>1,014</td>
-                  <td>per</td>
-                  <td>inceptos</td>
-                </tr>
-                <tr>
-                  <td>1,015</td>
-                  <td>sodales</td>
-                  <td>ligula</td>
-                </tr>
+                {% endfor %}
               </tbody>
             </table>
           </div>
+{% else %}
+<h3>It looks like you haven't uploaded any tracks yet...</h3>
+<div class="text-info empty-message"><a class="btn btn-success" href="{% url "tracks.upload" %}" role="button"><span class="glyphicon glyphicon-open" aria-hidden="true"></span> Upload a track now</a></div>
+{% endif %}
 {% endblock %}

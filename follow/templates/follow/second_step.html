@@ -1,0 +1,15 @@
+{% extends "follow_base.html" %}
+
+{% block content %}
+<h1>
+  <img src="{{ track.user.avatar_url }}" alt="{{ track.user.permalink }}" class="img-circle" />
+  Download: {{ track.artist }} - {{ track.title }}
+</h1>
+<h3>
+  <span class="download-step-number completed-step"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></span>
+  Connect
+</h3>
+<h3><span class="download-step-number current-step">2</span> Follow</h3>
+<a href="{% url "follow.create" %}?track_id={{ track.track_url_id }}" class="btn btn-primary" role="button">Click To Follow</a>
+<h3><span class="download-step-number upcoming-step">3</span> Download Your Track</h3>
+{% endblock %}

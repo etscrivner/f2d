@@ -12,6 +12,7 @@ from django.contrib import auth
 import soundcloud
 
 from f2d import settings
+import tracks.models
 from users import gateways
 from users import interactors
 from users import models
@@ -35,6 +36,7 @@ def soundcloud_oauth_callback(request):
 
     user = interactors.AuthenticateSoundCloudUserInteractor().run(code)
     request.session['soundcloud_user_id'] = user.soundcloud_user_id
+
     return shortcuts.redirect('dashboard')
 
 
@@ -48,6 +50,8 @@ def dashboard(request):
     user = gateways.DjangoSoundCloudUserDataGateway.get_by_soundcloud_user_id(
         soundcloud_user_id
     )
-    context = {'user': user}
+    all_tracks = tracks.models.UploadedTrack.objects.filter(user=user)
+    logger.error(all_tracks)
+    context = {'user': user, 'tracks': all_tracks, 'track_stats': [1, 2, 3]}
 
     return shortcuts.render(request, 'dashboard.html', context)
