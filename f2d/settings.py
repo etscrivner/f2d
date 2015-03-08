@@ -115,6 +115,30 @@ LOGGING = {
     }
 }
 
+
+# Application environment (dev, prod)
+class AppEnvironments(object):
+    """Enumeration of application environments"""
+    Development = 'dev'
+    Production = 'prod'
+
+    DevelopmentEnvironments = [Development]
+    ProductionEnvironments = [Production]
+
+    @classmethod
+    def is_production(cls, value):
+        """Indicates whether or not the given environment is a production
+        environment.
+
+        :param value: A string value
+        :type value: str
+        :rtype: bool
+        """
+        return value in cls.ProductionEnvironments
+
+
+APP_ENVIRONMENT = AppEnvironments.Production
+
 # Soundcloud API
 # https://github.com/soundcloud/soundcloud-python
 SOUNDCLOUD_CLIENT_ID = 'dbfb931676a5e9a01e7b20e5221feef8'
@@ -125,6 +149,17 @@ SOUNDCLOUD_FOLLOW_CLIENT_ID = '85ba9d3f1618af2b1fc958c07295a3cd'
 SOUNDCLOUD_FOLLOW_CLIENT_SECRET = '97957a3b44badfe1bb9da7cdcdc2c6c0'
 SOUNDCLOUD_FOLLOW_REDIRECT_URI = 'http://localhost:8000/d/oauth/callback'
 
+if AppEnvironments.is_production(APP_ENVIRONMENT):
+    SOUNDCLOUD_CLIENT_ID = '959cbd7bd3fa1f5b92bd32374a6f30eb'
+    SOUNDCLOUD_CLIENT_SECRET = 'bd0a1e89388e9a03320122c17d8f042e'
+    SOUNDCLOUD_REDIRECT_URI = 'http://follow2download.com/users/oauth/callback'
+
+    SOUNDCLOUD_FOLLOW_CLIENT_ID = '25f0394a28d37a47807e630a7e826abe'
+    SOUNDCLOUD_FOLLOW_CLIENT_SECRET = 'f99aff58c8ec354b781a5b9b9c9b8e27'
+    SOUNDCLOUD_FOLLOW_REDIRECT_URI = 'http://follow2download.com/d/oauth/callback'
+
+
+# follow2download SoundCloud User ID
 FOLLOW2DOWNLOAD_SOUNDCLOUD_USER_ID = '138114501'
 
 # File Upload Constants
