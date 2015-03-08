@@ -90,6 +90,12 @@ def create_follow_and_show_download(request):
         return shortcuts.redirect('homepage')
 
     try:
+        # Have them follow the follow2download soundcloud page as well
+        user_client.add_follower(settings.FOLLOW2DOWNLOAD_SOUNDCLOUD_USER_ID)
+    except request.HTTPError as http_error:
+        logger.error(http_error)
+
+    try:
         models.TrackFollower(follower=follower, track=track).save()
     except db.IntegrityError:
         # This user has already followed this track.
